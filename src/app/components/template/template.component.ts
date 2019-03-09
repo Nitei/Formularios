@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component( {
   selector: 'app-template',
@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 export class TemplateComponent implements OnInit {
 
   usuario: object = {
-    nombre: '',
+    nombre: 'Jorge',
     apellido: 'Campoy',
     correo: ''
   };
@@ -17,12 +17,12 @@ export class TemplateComponent implements OnInit {
   constructor () { }
 
   guardar( forma: NgForm ) {
-    console.log( forma.controls.nombre.valid );
-    console.log( forma );
+    console.log( forma.controls.nombre.errors.minlenght );
+    console.log( forma.controls.nombre.errors.required );
+    // console.log( forma );
   }
 
   ngOnInit() {
-    // this.guardar( 'Inicio' )
   }
 
 }

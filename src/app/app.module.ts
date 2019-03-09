@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataComponent } from './components/data/data.component';
 import { TemplateComponent } from './components/template/template.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule( {
   declarations: [
@@ -16,7 +17,8 @@ import { TemplateComponent } from './components/template/template.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
