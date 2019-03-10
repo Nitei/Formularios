@@ -8,18 +8,16 @@ import { NgForm, NgModel } from '@angular/forms';
 } )
 export class TemplateComponent implements OnInit {
 
-  usuario: object = {
+  usuario: any = {
     nombre: 'Jorge',
     apellido: 'Campoy',
-    correo: ''
+    correo: 'jorgecampoy81@gmail.com'
   };
 
   constructor () { }
 
   guardar( forma: NgForm ) {
-    console.log( forma.controls.nombre.errors.minlenght );
-    console.log( forma.controls.nombre.errors.required );
-    // console.log( forma );
+    console.log( forma );
   }
 
   ngOnInit() {
