@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
+// const Color = require( 'colrs' );
 
 @Component( {
   selector: 'app-template',
@@ -14,13 +15,16 @@ export class TemplateComponent implements OnInit {
     correo: 'jorgecampoy81@gmail.com'
   };
 
-  constructor () { }
+  constructor () {
+
+  }
 
   guardar( forma: NgForm ) {
-    console.log( forma );
+    // console.log( forma );
   }
 
   ngOnInit() {
-  }
+    // console.log( Color( 'bgcyan' ) );
 
+  }
 }

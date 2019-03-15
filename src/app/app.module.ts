@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { DataComponent } from './components/data/data.component';
 import { TemplateComponent } from './components/template/template.component';
 import { CommonModule } from '@angular/common';
+import { OnlyNumberDirective } from './directives/only-number.directive';
 
 @NgModule( {
   declarations: [
     AppComponent,
     DataComponent,
-    TemplateComponent
+    TemplateComponent,
+    OnlyNumberDirective
   ],
   imports: [
     BrowserModule,
