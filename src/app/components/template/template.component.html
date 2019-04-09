@@ -21,7 +21,6 @@
     <div class="form-group row">
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
-
         <input #apellido="ngModel" [(ngModel)]="usuario.apellido" class="form-control" id="apellido" type="text" placeholder="Apellido"
           name="apellido" minlength="4" required>
         <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
@@ -35,7 +34,6 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-8">
-
       <input #correo="ngModel" class="form-control" type="email" placeholder="Correo electrónico" name="correo" [(ngModel)]="usuario.correo"
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
       <div *ngIf="correo.invalid && (correo.dirty || correo.touched)">
@@ -48,10 +46,17 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Pais</label>
     <div class="col-8">
-      <select [(ngModel)]="usuario.pais" class="form-control" name="pais">
+      <select [(ngModel)]="usuario.pais" class="form-control" name="pais" required>
         <option value="">Seleccione un Pais</option>
         <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
       </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 row-form-label">Género</label>
+    <div *ngFor="let genero of generos" class="col-3">
+      <input [(ngModel)]="usuario.genero" type="radio" name="genero" [value]="genero" required> {{genero}}
     </div>
   </div>
 
