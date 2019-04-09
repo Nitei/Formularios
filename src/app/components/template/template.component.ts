@@ -12,19 +12,28 @@ export class TemplateComponent implements OnInit {
   usuario: any = {
     nombre: 'Jorge',
     apellido: 'Campoy',
-    correo: 'jorgecampoy81@gmail.com'
+    correo: 'jorgecampoy81@gmail.com',
+    pais: ''
   };
+
+  paises = [{
+    codigo: 'CRI',
+    nombre: 'Costa rica'
+  },
+  {
+    codigo: 'ESP',
+    nombre: 'España'
+  }]
 
   constructor () {
 
   }
 
   guardar( forma: NgForm ) {
-    // console.log( forma );
+    console.log( forma.form.value.pais );
   }
 
   ngOnInit() {
-    // console.log( Color( 'bgcyan' ) );
 
   }
 }

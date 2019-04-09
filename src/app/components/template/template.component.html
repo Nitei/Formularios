@@ -6,11 +6,13 @@
     <div class="form-group row">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
-
+        <!--class="form-control is-invalid" for red-->
         <input #nombre="ngModel" id="nombre" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" type="text"
           placeholder="Nombre" minlength="3" required>
         <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-          <div *ngIf="nombre.errors['minlength']">Mínimo {{nombre.errors['minlength'].requiredLength}} caracteres</div>
+          <div *ngIf="nombre.errors['minlength']">Mínimo {{nombre.errors['minlength'].requiredLength}}
+            caracteres
+          </div>
           <div *ngIf="nombre.errors['required']">El campo no puede estar vacio</div>
         </div>
       </div>
@@ -20,8 +22,8 @@
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
-        <input #apellido="ngModel" [(ngModel)]="usuario.apellido" class="form-control" id="apellido" type="text"
-          placeholder="Apellido" name="apellido" minlength="4" required>
+        <input #apellido="ngModel" [(ngModel)]="usuario.apellido" class="form-control" id="apellido" type="text" placeholder="Apellido"
+          name="apellido" minlength="4" required>
         <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
           <div *ngIf="apellido.errors['minlength']">Mínimo {{apellido.errors['minlength'].requiredLength}} caracteres</div>
           <div *ngIf="apellido.errors['required']">El campo no puede estar vacio</div>
@@ -32,25 +34,34 @@
 
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
-    <div class="col-md-8">
+    <div class="col-8">
 
-      <input #correo="ngModel" class="form-control" type="email" placeholder="Correo electrónico" name="correo"
-        [(ngModel)]="usuario.correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+      <input #correo="ngModel" class="form-control" type="email" placeholder="Correo electrónico" name="correo" [(ngModel)]="usuario.correo"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
       <div *ngIf="correo.invalid && (correo.dirty || correo.touched)">
         <div *ngIf="correo.errors['pattern']">Esta dirección de correo es inválida</div>
         <div *ngIf="correo.errors['required']">El campo no puede estar vacio</div>
       </div>
     </div>
+  </div>
 
-    <input appOnlyNumber min="1" type="number" class="form-control">
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Pais</label>
+    <div class="col-8">
+      <select [(ngModel)]="usuario.pais" class="form-control" name="pais">
+        <option value="">Seleccione un Pais</option>
+        <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
+      </select>
+    </div>
+  </div>
 
-    <div class="form-group row">
-      <label class="col-2 col-form-label">&nbsp;</label>
-      <div class="input-group col-md-8">
-        <button type="submit" class="btn btn-outline-primary">
+  <!-- <input appOnlyNumber min="1" type="number" class="form-control"> -->
+
+  <div class="form-group row">
+    <div class="input-group col-md-8">
+      <button [disabled]="forma.invalid" type="submit" class="btn btn-outline-primary">
           Guardar
         </button>
-      </div>
     </div>
   </div>
 
