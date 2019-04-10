@@ -2,29 +2,33 @@
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios(forma)" novalidate autocomplete="off">
 
-  <div class="form-group row">
-    <label class="col-2 col-form-label">Nombre</label>
-    <div class="col-8">
-      <input class="form-control" [ngClass]="{'is-invalid': forma.controls.nombre.invalid && (forma.controls.nombre.dirty || forma.controls.nombre.touched), 'is-valid': forma.valid}" name="nombre" type="text" placeholder="nombre"
+  <div formGroupName="nombreCompleto">
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+        <input class="form-control" 
+        [ngClass]="{'is-invalid': forma.get('nombreCompleto.nombre').invalid && (forma.get('nombreCompleto.nombre').dirty || forma.get('nombreCompleto.nombre').touched), 'is-valid': forma.get('nombreCompleto.nombre').valid}" 
+        name="nombre" 
+        type="text" 
+        placeholder="nombre"
         formControlName="nombre" required>
-      <div *ngIf="forma.controls.nombre.invalid && (forma.controls.nombre.dirty || forma.controls.nombre.touched)">
-        <div *ngIf="forma.controls.nombre.errors?.minlength">Mínimo caracteres</div>
-        <div *ngIf="forma.controls.nombre.errors?.required">El campo no puede estar vacio</div>
+        <div *ngIf="forma.get('nombreCompleto.nombre').invalid && (forma.get('nombreCompleto.nombre').dirty || forma.get('nombreCompleto.nombre').touched)">
+          <div *ngIf="forma.get('nombreCompleto.nombre').errors?.minlength">Mínimo caracteres</div>
+          <div *ngIf="forma.get('nombreCompleto.nombre').errors?.required">El campo no puede estar vacio</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <label class="col-2 col-form-label">Apellido</label>
-    <div class="col-8">
-      <input class="form-control" 
-      [ngClass]="{'is-invalid': forma.controls.apellido.invalid && (forma.controls.apellido.dirty || forma.controls.apellido.touched), 'is-valid': forma.valid}" 
-      name="apellido" 
-      type="text" placeholder="Apellido"
-        formControlName="apellido" required>
-      <div *ngIf="forma.controls.apellido.invalid && (forma.controls.apellido.dirty || forma.controls.apellido.touched)">
-        <div *ngIf="forma.controls.apellido.errors?.minlength">Mínimo caracteres</div>
-        <div *ngIf="forma.controls.apellido.errors?.required">El campo no puede estar vacio</div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
+        <input class="form-control" 
+        [ngClass]="{'is-invalid': forma.get('nombreCompleto.apellido').invalid && (forma.get('nombreCompleto.apellido').dirty || forma.get('nombreCompleto.apellido').touched), 'is-valid': forma.get('nombreCompleto.apellido').valid}" 
+        name="apellido" type="text" placeholder="Apellido" formControlName="apellido" required>
+        <div *ngIf="forma.get('nombreCompleto.apellido').invalid && (forma.get('nombreCompleto.apellido').dirty || forma.get('nombreCompleto.apellido').touched)">
+          <div *ngIf="forma.get('nombreCompleto.apellido').errors?.minlength">Mínimo caracteres</div>
+          <div *ngIf="forma.get('nombreCompleto.apellido').errors?.required">El campo no puede estar vacio</div>
+        </div>
       </div>
     </div>
   </div>
@@ -32,14 +36,13 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-8">
-      <input class="form-control" 
-      [ngClass]="{'is-invalid': forma.controls.correo.invalid && (forma.controls.correo.dirty || forma.controls.correo.touched), 'is-valid': forma.valid}" 
-      name="correo" 
-      type="text" placeholder="Correo"
-      formControlName="correo" required>
+      <input class="form-control" name="correo" type="text" placeholder="Correo" formControlName="correo" required
+      [ngClass]="{'is-invalid': forma.controls.correo.invalid && (forma.controls.correo.dirty || forma.controls.correo.touched), 'is-valid': forma.controls.correo.valid}">
       <div *ngIf="forma.controls.correo.invalid && (forma.controls.correo.dirty || forma.controls.correo.touched)">
-        <div *ngIf="forma.controls.correo.errors?.minlength">Mínimo caracteres</div>
-        <div *ngIf="forma.controls.correo.errors?.required">El campo no puede estar vacio</div>
+        <div *ngIf="forma.controls.correo.errors?.minlength"
+          >Mínimo caracteres</div>
+        <div *ngIf="forma.controls.correo.errors?.required"
+          >El campo no puede estar vacio</div>
       </div>
     </div>
   </div>
