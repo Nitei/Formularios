@@ -1,0 +1,80 @@
+<h4>Formularios <small>template</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios(forma)" novalidate autocomplete="off">
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Nombre</label>
+    <div class="col-8">
+      <input class="form-control" [ngClass]="{'is-invalid': forma.controls.nombre.invalid && (forma.controls.nombre.dirty || forma.controls.nombre.touched), 'is-valid': forma.valid}" name="nombre" type="text" placeholder="nombre"
+        formControlName="nombre" required>
+      <div *ngIf="forma.controls.nombre.invalid && (forma.controls.nombre.dirty || forma.controls.nombre.touched)">
+        <div *ngIf="forma.controls.nombre.errors?.minlength">Mínimo caracteres</div>
+        <div *ngIf="forma.controls.nombre.errors?.required">El campo no puede estar vacio</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Apellido</label>
+    <div class="col-8">
+      <input class="form-control" 
+      [ngClass]="{'is-invalid': forma.controls.apellido.invalid && (forma.controls.apellido.dirty || forma.controls.apellido.touched), 'is-valid': forma.valid}" 
+      name="apellido" 
+      type="text" placeholder="Apellido"
+        formControlName="apellido" required>
+      <div *ngIf="forma.controls.apellido.invalid && (forma.controls.apellido.dirty || forma.controls.apellido.touched)">
+        <div *ngIf="forma.controls.apellido.errors?.minlength">Mínimo caracteres</div>
+        <div *ngIf="forma.controls.apellido.errors?.required">El campo no puede estar vacio</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-8">
+      <input class="form-control" 
+      [ngClass]="{'is-invalid': forma.controls.correo.invalid && (forma.controls.correo.dirty || forma.controls.correo.touched), 'is-valid': forma.valid}" 
+      name="correo" 
+      type="text" placeholder="Correo"
+      formControlName="correo" required>
+      <div *ngIf="forma.controls.correo.invalid && (forma.controls.correo.dirty || forma.controls.correo.touched)">
+        <div *ngIf="forma.controls.correo.errors?.minlength">Mínimo caracteres</div>
+        <div *ngIf="forma.controls.correo.errors?.required">El campo no puede estar vacio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <pre>{{forma.value | json}}</pre> -->
+
+  <!-- <div class="form-group row">
+    <label class="col-2 col-form-label">Pais</label>
+    <div class="col-8">
+      <select [(ngModel)]="usuario.pais" class="form-control" name="pais" required>
+        <option value="">Seleccione un Pais</option>
+        <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
+      </select>
+    </div>
+  </div> -->
+
+  <!-- <div class="form-group row">
+    <label class="col-2 row-form-label">Género</label>
+    <div *ngFor="let genero of generos" class="col-3">
+      <input [(ngModel)]="usuario.genero" type="radio" name="genero" [value]="genero" required> {{genero}}
+    </div>
+  </div> -->
+
+  <!-- <div class="form-group row">
+    <label class="col-2 row-form-label">Condiciones</label>
+    <input [(ngModel)]="usuario.acepta" class="custom-control" type="checkbox" name="acepta" [value]="true" required>Acepta las
+    condiciones
+  </div> -->
+
+  <div class="form-group row">
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+          Guardar
+        </button>
+    </div>
+  </div>
+
+</form>
