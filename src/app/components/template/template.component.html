@@ -60,6 +60,12 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 row-form-label">Condiciones</label>
+    <input [(ngModel)]="usuario.acepta" class="custom-control" type="checkbox" name="acepta" [value]="true" required>Acepta las
+    condiciones
+  </div>
+
   <!-- <input appOnlyNumber min="1" type="number" class="form-control"> -->
 
   <div class="form-group row">
