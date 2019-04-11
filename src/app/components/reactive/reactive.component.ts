@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reactive',
@@ -36,18 +37,32 @@ export class ReactiveComponent implements OnInit {
       ]),
       // pasatiempos: this.fb.array([
       //   this.fb.control('', Validators.required),
-        // this.fb.control('Leer', Validators.required),
-        // this.fb.control('Youtube', Validators.required),
+      //   this.fb.control('Leer', Validators.required),
+      //   this.fb.control('Youtube', Validators.required),
       // ]),
-      password1: this.fb.control('', Validators.required),
-      password2: this.fb.control('', Validators.required),
+      // password1: this.fb.control('', Validators.required),
+      // password2: this.fb.control('', Validators.required),
+      username: this.fb.control('', Validators.required, this.existeUsuario)
     })
 
-    this.forma.controls['password2'].setValidators([
-      Validators.required,
-      this.noEqual.bind( this )
-    ])
+    // this.forma.controls['password2'].setValidators([
+    //   Validators.required,
+    //   this.noEqual.bind( this )
+    // ])
     // this.forma.setValue(this.usuario)
+  }
+
+  existeUsuario(control: FormControl): Promise<any> | Observable<any> {
+    let promesa = new Promise((resolve, reject) => {
+          setTimeout(() => {
+        if(control.value === 'Nitei') {
+          resolve( {existe: true} );
+        } else { 
+          resolve(null)
+          }
+          }, 3000);
+    });
+    return promesa;
   }
 
   noEqual( control: FormControl ) {
