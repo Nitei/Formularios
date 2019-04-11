@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -7,7 +7,7 @@ import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms'
   styleUrls: ['./reactive.component.sass']
 })
 export class ReactiveComponent implements OnInit {
-  forma: FormGroup
+  forma: FormGroup;
   usuario = {
     nombreCompleto: {
       nombre: 'Jorge',
@@ -17,37 +17,56 @@ export class ReactiveComponent implements OnInit {
     pasatiempos: ['Correr', 'Leer', 'Youtube']
   }
 
-  constructor() {
-    this.forma = new FormGroup({
-      nombreCompleto: new FormGroup({
-        // nombre: new FormControl(this.usuario.nombreCompleto.nombre, [
-        nombre: new FormControl('', [
+  constructor(private fb: FormBuilder) {
+
+    this.forma = this.fb.group({
+      nombreCompleto: this.fb.group({
+        nombre: this.fb.control('Jorge', [
           Validators.required,
           Validators.minLength(3)
         ]),
-        apellido: new FormControl('', [
+        apellido: this.fb.control('Campoy', [
           Validators.required,
           Validators.minLength(3)
         ])
       }),
-      correo: new FormControl('jorgecampoy81@gmail.com', [
+      correo: this.fb.control('jorgecampoy81@gmail.com', [
         Validators.required,
         Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')
       ]),
-      pasatiempos: new FormArray([
-        new FormControl('Correr', Validators.required),
-      ])
+      // pasatiempos: this.fb.array([
+      //   this.fb.control('', Validators.required),
+        // this.fb.control('Leer', Validators.required),
+        // this.fb.control('Youtube', Validators.required),
+      // ]),
+      password1: this.fb.control('', Validators.required),
+      password2: this.fb.control('', Validators.required),
     })
-    this.forma.setValue(this.usuario)
+
+    this.forma.controls['password2'].setValidators([
+      Validators.required,
+      this.noEqual.bind( this )
+    ])
+    // this.forma.setValue(this.usuario)
   }
 
-  agregarPasatiempos() {
+  noEqual( control: FormControl ) {
+    if( control.value !== this.forma.controls['password1'].value ) {
+      return {
+        noIgual: true
+      };
+    } else { return null; }
+  }
+
+  agregarPasatiempos(ev) {
+    console.log(ev);
     (<FormArray>this.forma.controls['pasatiempos']).push(
-      new FormControl('Correr', Validators.required)
+      this.fb.control('Correr', Validators.required)
     );
   }
 
   guardarCambios() {
+    console.log(this.forma)
     console.log(this.forma.value)
     // this.forma.reset({
     //   nombreCompleto: {
