@@ -43,20 +43,27 @@ export class ReactiveComponent implements OnInit {
       // password1: this.fb.control('', Validators.required),
       // password2: this.fb.control('', Validators.required),
       username: this.fb.control('', Validators.required, this.existeUsuario)
-    })
+    });
 
     // this.forma.controls['password2'].setValidators([
     //   Validators.required,
     //   this.noEqual.bind( this )
     // ])
     // this.forma.setValue(this.usuario)
+
+    // this.forma.valueChanges.subscribe(data => {
+    //   console.log(data);
+    // });
+    this.forma.controls['username'].statusChanges.subscribe(data => {
+      console.log(data);
+    })
   }
 
   existeUsuario(control: FormControl): Promise<any> | Observable<any> {
     let promesa = new Promise((resolve, reject) => {
           setTimeout(() => {
         if(control.value === 'Nitei') {
-          resolve( {existe: true} );
+          resolve({existe: true});
         } else { 
           resolve(null)
           }
