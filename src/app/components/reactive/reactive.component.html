@@ -1,17 +1,26 @@
 <h4>Formularios <small>template</small></h4>
 <hr />
-<form [formGroup]="forma" (ngSubmit)="guardarCambios(forma)" novalidate autocomplete="off">
+<form [formGroup]="forma"
+  (ngSubmit)="guardarCambios(forma)"
+  novalidate
+  autocomplete="off">
   <div formGroupName="nombreCompleto">
     <div class="form-group row">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
-        <input class="form-control" [ngClass]="{
+        <input class="form-control"
+          [ngClass]="{
             'is-invalid':
               forma.get('nombreCompleto.nombre').invalid &&
               (forma.get('nombreCompleto.nombre').dirty ||
                 forma.get('nombreCompleto.nombre').touched),
             'is-valid': forma.get('nombreCompleto.nombre').valid
-          }" name="nombre" type="text" placeholder="nombre" formControlName="nombre" required />
+          }"
+          name="nombre"
+          type="text"
+          placeholder="nombre"
+          formControlName="nombre"
+          required />
         <div *ngIf="
             forma.get('nombreCompleto.nombre').invalid &&
             (forma.get('nombreCompleto.nombre').dirty ||
@@ -30,13 +39,19 @@
     <div class="form-group row">
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
-        <input class="form-control" [ngClass]="{
+        <input class="form-control"
+          [ngClass]="{
             'is-invalid':
               forma.get('nombreCompleto.apellido').invalid &&
               (forma.get('nombreCompleto.apellido').dirty ||
                 forma.get('nombreCompleto.apellido').touched),
             'is-valid': forma.get('nombreCompleto.apellido').valid
-          }" name="apellido" type="text" placeholder="Apellido" formControlName="apellido" required />
+          }"
+          name="apellido"
+          type="text"
+          placeholder="Apellido"
+          formControlName="apellido"
+          required />
         <div *ngIf="
             forma.get('nombreCompleto.apellido').invalid &&
             (forma.get('nombreCompleto.apellido').dirty ||
@@ -56,7 +71,13 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-8">
-      <input class="form-control" name="correo" type="text" placeholder="Correo" formControlName="correo" required [ngClass]="{
+      <input class="form-control"
+        name="correo"
+        type="text"
+        placeholder="Correo"
+        formControlName="correo"
+        required
+        [ngClass]="{
           'is-invalid':
             forma.controls.correo.invalid &&
             (forma.controls.correo.dirty || forma.controls.correo.touched),
@@ -105,7 +126,10 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Nombre de usuario</label>
     <div class="col-8 form-row">
-      <input class="form-control" type="text" placeholder="Usuario" formControlName="username">
+      <input class="form-control"
+        type="text"
+        placeholder="Usuario"
+        formControlName="username">
     </div>
     <div>
       <p>Formulario valido: {{forma.valid | json}}</p>
@@ -138,7 +162,9 @@
 
   <div class="form-group row">
     <div class="input-group col-md-8">
-      <button type="submit" class="btn btn-outline-primary">
+      <button type="submit"
+        [disabled]="forma.status === 'INVALID' || forma.status === 'PENDING'"
+        class="btn btn-outline-primary">
         Guardar
       </button>
     </div>
