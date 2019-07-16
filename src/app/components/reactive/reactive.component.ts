@@ -47,7 +47,7 @@ export class ReactiveComponent {
         password2: this.fb.control('', Validators.required),
       */
       ///// (Mock Username 1 de 2) Con esto se comprueba si el usuario existe en la base de datos \\\\\
-      username: this.fb.control( '', Validators.required, this.existeUsuario )
+      // username: this.fb.control( '', Validators.required, this.existeUsuario )
     } );
 
     /////  Suprimido por ser repetitivo, con lo que hay activo es suficiente como ejemplo  \\\\\
@@ -67,6 +67,16 @@ export class ReactiveComponent {
       console.log( data );
     } )
     */
+
+    setTimeout( () => {
+      for ( const key in this.forma.controls ) {
+        if ( this.forma.controls.hasOwnProperty( key ) ) {
+          const element = this.forma.controls[ key ];
+          console.log( element.value );
+        }
+      }
+      console.log();
+    }, 2000 );
   }
 
   /*
