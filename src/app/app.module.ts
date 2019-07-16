@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { TemplateComponent } from './components/template/template.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveComponent } from './components/reactive/reactive.component';
+import { ReactivePadreComponent } from './components/reactive-padre/reactive-padre.component';
+import { ReactiveInputComponent } from './components/reactive-input/reactive-input.component';
 
 @NgModule( {
   declarations: [
     AppComponent,
     TemplateComponent,
-    ReactiveComponent
+    ReactiveComponent,
+    ReactivePadreComponent,
+    ReactiveInputComponent
   ],
   imports: [
     BrowserModule,
